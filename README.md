@@ -25,6 +25,8 @@ python stack/doubly_stack.py
 
 Output:
 
-
-
-
+```python
+None <- 9 <=> 3 <=> 2 <=> 1 -> None
+None <- 3 <=> 2 <=> 1 -> None
+None <- 2 <=> 1 -> None
+```
