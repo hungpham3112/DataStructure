@@ -1,12 +1,12 @@
-# DataStructure
+# :new_moon: DataStructure
 
 Data structure implementation in Python 🐍
 
-## Prerequisites
+## :hammer_and_wrench: Prerequisites
 
 - Python >= 3.6
 
-## Usage
+## :rocket: Usage
 
 Clone the repository to your local machine:
 

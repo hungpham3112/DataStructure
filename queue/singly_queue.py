@@ -7,14 +7,14 @@ class Node:
 class SinglyQueue:
     # Function to initialize head
     def __init__(self):
-        self.head: Node | None = None
+        self._head: Node | None = None
         self.size = 0
 
     def __len__(self) -> int:
         return self.size
 
     def __repr__(self):
-        head = self.head
+        head = self._head
         node = []
         while head:
             node.append(head.data)
@@ -31,13 +31,13 @@ class SinglyQueue:
         Time complexity: O(1)
         Space complexity: O(1)
         """
-        if self.head is None:
-            self.head = Node(data)
+        if self._head is None:
+            self._head = Node(data)
             self.size += 1
         else:
             new_node = Node(data)
-            new_node.next = self.head
-            self.head = new_node
+            new_node.next = self._head
+            self._head = new_node
             self.size += 1
 
     def dequeue(self):
@@ -46,18 +46,21 @@ class SinglyQueue:
         Time complexity: O(n)
         Space complexity: O(1)
         """
-        if self.head is None:
+        if self._head is None:
             return None
         else:
-            head = self.head
+            head = self._head
             count = 1
             while count < self.size - 1:
                 assert head is not None
                 head = head.next
                 count += 1
             assert head is not None
+            assert head.next is not None
+            temp = head.next.data
             head.next = None
             self.size -= 1
+            return temp
 
 
 if __name__ == "__main__":
@@ -65,7 +68,6 @@ if __name__ == "__main__":
     squeue.enqueue(4)
     squeue.enqueue(12)
     squeue.enqueue(500)
-    print(squeue)
-    squeue.dequeue()
-    print(squeue)
-    print(len(squeue))
+    print("Before: ", squeue)
+    pop = squeue.dequeue()
+    print("After:  ", squeue)

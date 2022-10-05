@@ -51,6 +51,7 @@ class SinglyStack:
             assert isinstance(self.head, Node)
             return self.head.data
 
+
 if __name__ == "__main__":
     sstack = SinglyStack()
     sstack.push(1)
@@ -58,7 +59,8 @@ if __name__ == "__main__":
     sstack.push(3)
     sstack.push(9)
     sstack.pop()
-    sstack.peek()
     sstack.push(9)
-    print(sstack)
-    print(len(sstack))
+    sstack.push(12)
+    print("Before: ", sstack)
+    sstack.pop()
+    print("After:  ", sstack)

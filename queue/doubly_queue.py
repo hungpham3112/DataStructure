@@ -16,7 +16,7 @@ class DoublyQueue:
         return self.size
 
     def __repr__(self):
-        current = self.head
+        current = self.tail
         node = []
         while current:
             node.append(current.data)
@@ -28,7 +28,7 @@ class DoublyQueue:
 
     def enqueue(self, data):
         """
-        enqueue is a function to add a new data to the head of linked list
+        enqueue is a function to add a new data to the tail of linked list
         Time complexity: O(1)
         Space complexity: O(1)
         """
@@ -37,15 +37,14 @@ class DoublyQueue:
             self.size += 1
         else:
             new_node = Node(data)
-            new_node.next = self.head
-            new_node.prev = None
-            self.head.prev = new_node
-            self.head = new_node
+            self.tail.prev = new_node
+            new_node.next = self.tail
+            self.tail = new_node
             self.size += 1
 
     def dequeue(self):
         """
-        dequeue is a function to remove a data from the tail of linked list
+        dequeue is a function to remove a data from the head of linked list
         Time complexity: O(1)
         Space complexity: O(1)
         """
@@ -53,21 +52,21 @@ class DoublyQueue:
             return None
         else:
             assert isinstance(self.tail, Node)
-            self.tail = self.tail.prev
+            temp = self.head.data
+            self.head = self.head.prev
             assert isinstance(self.tail, Node)
-            self.tail.next = None
+            self.head.next = None
             self.size -= 1
+            return temp
 
 
 if __name__ == "__main__":
     dqueue = DoublyQueue()
-    dqueue.enqueue(4)
     dqueue.enqueue(12)
-    dqueue.enqueue(500)
-    dqueue.enqueue(9)
-    print(dqueue)
-    dqueue.dequeue()
-    print(dqueue)
-    dqueue.dequeue()
-    print(dqueue)
-    #  print(len(dqueue))
+    dqueue.enqueue("hello")
+    dqueue.enqueue("world")
+    dqueue.enqueue(19)
+    dqueue.enqueue(20)
+    print("Before: ", dqueue)
+    pop = dqueue.dequeue()
+    print("After:  ", dqueue)

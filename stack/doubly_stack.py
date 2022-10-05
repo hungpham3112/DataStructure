@@ -16,7 +16,7 @@ class DoublyStack:
         return self.size
 
     def __repr__(self):
-        current = self.head
+        current = self.tail
         node = []
         while current:
             node.append(current.data)
@@ -32,19 +32,21 @@ class DoublyStack:
             self.size += 1
         else:
             new_node = Node(data)
-            new_node.next = self.head
+            new_node.next = self.tail
             new_node.prev = None
-            self.head.prev = new_node
-            self.head = new_node
+            assert isinstance(self.tail, Node)
+            self.tail.prev = new_node
+            self.tail = new_node
             self.size += 1
 
     def pop(self):
         if self.head is None:
             raise IndexError("pop from empty stack")
         else:
-            popped = self.head.data
-            self.head = self.head.next
-            assert self.head is not None
+            assert isinstance(self.tail, Node)
+            popped = self.tail.data
+            self.tail = self.tail.next
+            assert self.tail is not None
             self.head.prev = None
             self.size -= 1
             return popped
@@ -63,15 +65,8 @@ if __name__ == "__main__":
     dstack.push(2)
     dstack.push(3)
     dstack.push(9)
-    #  dstack.push(9)
-    #  dstack.push(15)
-    print(dstack)
+    dstack.push(9)
+    dstack.push(12)
+    print("Before: ", dstack)
     dstack.pop()
-    print(dstack)
-    dstack.pop()
-    print(dstack)
-    #  print(dstack)
-    #  print(dstack.peek())
-    #  print(len(dstack))
-    #  lst = []
-    #  lst.pop()
+    print("After:  ", dstack)
